@@ -16,7 +16,7 @@
 		<source-file src="src/ios/AppDelegate+BadgeUpdate.m" />
 		<source-file src="src/ios/AppDelegate+BadgeUpdate.h" />
 	</platform>
-	<platform name="android">
+	<!--<platform name="android">
 		<config-file parent="/*" target="res/xml/config.xml">
 			<feature name="CDVSetBadge">
 				<param name="android-package" value="cordova-setbadge-plugin.CDVSetBadge" />
@@ -24,5 +24,5 @@
 		</config-file>
 		<config-file parent="/*" target="AndroidManifest.xml"></config-file>
 		<source-file src="src/android/CDVSetBadge.java" target-dir="src/cordova-setbadge-plugin/CDVSetBadge" />
-	</platform>
+	</platform>-->
 </plugin>
