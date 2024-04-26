@@ -34,14 +34,14 @@
 }
 
 - (void)xxx_application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
-    // Check if shouldIncrementBadge is "true" in the payload
-    NSString *shouldIncrementBadge = [userInfo objectForKey:@"shouldIncrementBadge"];
-    if (shouldIncrementBadge && [shouldIncrementBadge isEqualToString:@"true"]) {
+    // Check if isIncrementBadge is "true" in the payload
+    NSString *isIncrementBadge = [userInfo objectForKey:@"isIncrementBadge"];
+    if (isIncrementBadge && [isIncrementBadge isEqualToString:@"true"]) {
         dispatch_async(dispatch_get_main_queue(), ^{
             application.applicationIconBadgeNumber += 1; // Increment the badge number
         });
     } else {
-        NSString *badgeNumberString = [userInfo objectForKey:@"badge"];
+        NSString *badgeNumberString = [userInfo objectForKey:@"setBadge"];
         if (badgeNumberString) {
             NSNumber *badgeNumber = @([badgeNumberString integerValue]);
             dispatch_async(dispatch_get_main_queue(), ^{
