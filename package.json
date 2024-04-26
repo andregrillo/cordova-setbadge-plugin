@@ -1,0 +1,29 @@
+{
+  "name": "CDVSetBadge",
+  "version": "1.0.0",
+  "description": "OutSystems Set app's badge number",
+  "cordova": {
+    "id": "cordova-setbadge-plugin",
+    "platforms": [
+      "ios",
+      "android"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andregrillo/cordova-setbadge-plugin.git"
+  },
+  "keywords": [
+    "outsystems",
+    "cordova",
+    "ecosystem:cordova",
+    "cordova-ios",
+    "cordova-android"
+  ],
+  "author": "OutSystems",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/andregrillo/cordova-setbadge-plugin/issues"
+  },
+  "homepage": "https://github.com/andregrillo/cordova-setbadge-plugin#readme"
+}
