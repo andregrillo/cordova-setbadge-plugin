@@ -34,17 +34,20 @@
 }
 
 - (void)xxx_application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
-    // Check if shouldIncrementBadge is true in the payload
-    if ([userInfo objectForKey:@"shouldIncrementBadge"] && [[userInfo objectForKey:@"shouldIncrementBadge"] boolValue]) {
+    // Check if shouldIncrementBadge is "true" in the payload
+    NSString *shouldIncrementBadge = [userInfo objectForKey:@"shouldIncrementBadge"];
+    if (shouldIncrementBadge && [shouldIncrementBadge isEqualToString:@"true"]) {
         dispatch_async(dispatch_get_main_queue(), ^{
             application.applicationIconBadgeNumber += 1; // Increment the badge number
         });
-    } else if ([userInfo objectForKey:@"badge"]) {
-        // If shouldIncrementBadge is false or not present, and badge is present
-        NSNumber *badgeNumber = [userInfo objectForKey:@"badge"];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            application.applicationIconBadgeNumber = [badgeNumber integerValue]; // Sets specific badge number
-        });
+    } else {
+        NSString *badgeNumberString = [userInfo objectForKey:@"badge"];
+        if (badgeNumberString) {
+            NSNumber *badgeNumber = @([badgeNumberString integerValue]);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                application.applicationIconBadgeNumber = [badgeNumber integerValue]; // Set specific badge number
+            });
+        }
     }
 
     // Call the original method
