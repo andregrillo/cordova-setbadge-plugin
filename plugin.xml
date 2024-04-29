@@ -3,7 +3,7 @@
 	xmlns="http://apache.org/cordova/ns/plugins/1.0"
 	xmlns:android="http://schemas.android.com/apk/res/android">
 	<name>CDVSetBadge</name>
-	<js-module name="cordova-setbadge-plugin" src="www/CDVSetBadge.js">
+	<js-module name="cordova-setbadge-plugin">
 		<clobbers target="cordova.plugins.SetBadge" />
 	</js-module>
 	<platform name="ios">
@@ -12,17 +12,23 @@
 				<param name="ios-package" value="CDVSetBadge" />
 			</feature>
 		</config-file>
-		<source-file src="src/ios/CDVSetBadge.m" />
 		<source-file src="src/ios/AppDelegate+BadgeUpdate.m" />
 		<source-file src="src/ios/AppDelegate+BadgeUpdate.h" />
 	</platform>
-	<!--<platform name="android">
+	<platform name="android">
+		<config-file target="AndroidManifest.xml" parent="/*">
+	      <receiver android:name=".BadgeNotificationReceiver">
+	        <intent-filter>
+	          <action android:name="UPDATE_BADGE"/>
+	        </intent-filter>
+	      </receiver>
+	    </config-file>
 		<config-file parent="/*" target="res/xml/config.xml">
 			<feature name="CDVSetBadge">
-				<param name="android-package" value="cordova-setbadge-plugin.CDVSetBadge" />
+				<param name="android-package" value="outsystems.setbadge.plugin.BadgeNotificationReceiver" />
 			</feature>
 		</config-file>
 		<config-file parent="/*" target="AndroidManifest.xml"></config-file>
-		<source-file src="src/android/CDVSetBadge.java" target-dir="src/cordova-setbadge-plugin/CDVSetBadge" />
-	</platform>-->
+		<source-file src="src/android/BadgeNotificationReceiver.java" target-dir="src/outsystems-setbadge-plugin/BadgeNotificationReceiver" />
+	</platform>
 </plugin>
