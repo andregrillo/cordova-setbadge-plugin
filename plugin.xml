@@ -29,6 +29,6 @@
 			</feature>
 		</config-file>
 		<config-file parent="/*" target="AndroidManifest.xml"></config-file>
-		<source-file src="src/android/BadgeNotificationReceiver.java" target-dir="src/outsystems/setbadge/plugin" />
+		<source-file src="src/android/BadgeNotificationReceiver.java" target-dir="src/com/outsystems/setbadge/plugin" />
 	</platform>
 </plugin>

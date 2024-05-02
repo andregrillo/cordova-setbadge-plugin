@@ -1,6 +1,6 @@
 // BadgeNotificationReceiver.java
 
-package outsystems.setbadge.plugin; 
+package com.outsystems.setbadge.plugin; 
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
