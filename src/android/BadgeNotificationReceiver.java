@@ -1,6 +1,6 @@
 // BadgeNotificationReceiver.java
 
-package outsystems.setbadge.plugin; // Replace this with the actual package name for your project
+package outsystems.setbadge.plugin; 
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -15,8 +15,8 @@ public class BadgeNotificationReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        String shouldIncrementBadge = intent.getStringExtra("shouldIncrementBadge");
-        String badgeCountString = intent.getStringExtra("badge");
+        String isIncrementBadge = intent.getStringExtra("isIncrementBadge");
+        String badgeCountString = intent.getStringExtra("setBadge");
 
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
@@ -26,15 +26,15 @@ public class BadgeNotificationReceiver extends BroadcastReceiver {
         }
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID)
-            .setContentTitle("Badge Update")
-            .setContentText("Updating badge...")
-            .setSmallIcon(R.drawable.ic_notification)  // Replace with a valid icon resource
-            .setBadgeIconType(NotificationCompat.BADGE_ICON_SMALL);
+                .setContentTitle("Badge Update")
+                .setContentText("Updating badge...")
+                .setPriority(NotificationCompat.PRIORITY_MIN)
+                .setDefaults(NotificationCompat.DEFAULT_NONE);
 
-        if ("true".equals(shouldIncrementBadge)) {
-            builder.setNumber(notificationManager.getActiveNotifications().length + 1);  // Increment badge count
+        if ("true".equals(isIncrementBadge)) {
+            builder.setNumber(notificationManager.getActiveNotifications().length + 1);
         } else if (badgeCountString != null) {
-            builder.setNumber(Integer.parseInt(badgeCountString));  // Set badge count directly
+            builder.setNumber(Integer.parseInt(badgeCountString));
         }
 
         notificationManager.notify(1, builder.build());
