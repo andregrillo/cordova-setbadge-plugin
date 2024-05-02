@@ -16,12 +16,12 @@
 		<source-file src="src/ios/AppDelegate+BadgeUpdate.h" />
 	</platform>
 	<platform name="android">
-		<config-file target="AndroidManifest.xml" parent="/*">
-	      <receiver android:name=".BadgeNotificationReceiver">
-	        <intent-filter>
-	          <action android:name="UPDATE_BADGE"/>
-	        </intent-filter>
-	      </receiver>
+		<config-file target="AndroidManifest.xml" parent="/manifest/application">
+	      <receiver android:name="com.outsystems.setbadge.plugin.BadgeNotificationReceiver" android:exported="true">
+		    <intent-filter>
+		        <action android:name="UPDATE_BADGE" />
+		    </intent-filter>
+		  </receiver>
 	    </config-file>
 		<config-file parent="/*" target="res/xml/config.xml">
 			<feature name="CDVSetBadge">
